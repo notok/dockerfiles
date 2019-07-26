@@ -1,0 +1,3 @@
+[submodule "dockerfile_scripts"]
+	path = dockerfile_scripts
+	url = https://github.com/notok/dockerfile_scripts.git
