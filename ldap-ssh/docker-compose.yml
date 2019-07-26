@@ -1,0 +1,23 @@
+version: '3.4'
+services:
+  main:
+    build:
+      context: ./sshd/
+      args:
+        http_proxy: ${HTTP_PROXY}
+        https_proxy: ${HTTPS_PROXY}
+    ports:
+      - "20022:22"
+    links:
+      - ldap
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./sshd_config:/etc/ssh/sshd_config:ro
+  ldap:
+    image: osixia/openldap:1.2.4
+    #ports:
+    #  - "20389:389"
+    environment:
+      LDAP_ORGANISATION: "Example Org"
+      LDAP_DOMAIN: "example.org"
+      LDAP_ADMIN_PASSWORD: "admin"
